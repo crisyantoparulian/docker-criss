@@ -7,3 +7,17 @@ before_install:
 
 script:
     - docker run crisyanto/docker-criss npm run test -- --coverage
+
+deploy:
+    #edge: true
+    provider: elasticbeanstalk
+    region: "us-west-2"
+    name: "docker-criss"
+    env: "Dokcer-env"
+    bucket_name: "bucket_name"
+    bucket_path: "docker"
+    on:
+        branch: master
+    access_key_id: $AWS_ASSESS_KEY
+    secret_acess_key:
+        secure: "$AWS_SECRET_KEY"
